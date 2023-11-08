@@ -34,8 +34,6 @@ public class hareket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Enerjislider.value = enerji;
-        Canslider.value = can;
         enerji = Mathf.Min(enerji + 60 * Time.deltaTime, 100);
         if (pw.IsMine)
         {
@@ -58,7 +56,7 @@ public class hareket : MonoBehaviour
             {
                 Hareket();
             }
-            
+            pw.RPC("SliderUpdate", RpcTarget.AllBufferedViaServer);
            
             
             if (movement.x < 0)
@@ -86,6 +84,14 @@ public class hareket : MonoBehaviour
        
         
     }
+
+    [PunRPC]
+    public void SliderUpdate()
+    {
+        Enerjislider.value = enerji;
+        Canslider.value = can;
+    }
+
     [PunRPC]
     public void Attack()
     {

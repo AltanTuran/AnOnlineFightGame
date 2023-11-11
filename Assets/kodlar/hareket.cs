@@ -5,10 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class hareket : MonoBehaviour
+public class hareket : MonoBehaviourPun , IPunObservable
 {
     public Transform hitpoint;
-    
+
     bool rolling = false;
     public LayerMask karakterlayer;
     private SpriteRenderer spriteRenderer;
@@ -21,6 +21,7 @@ public class hareket : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 movement;
     Animator animator;
+    public GameObject[] players;
     PhotonView pw;
     void Start()
     {
@@ -42,12 +43,13 @@ public class hareket : MonoBehaviour
                 Collider2D[] vurulandusmanlar = Physics2D.OverlapCircleAll(hitpoint.position, 0.7f, karakterlayer);
                 for (int i = 0; i < vurulandusmanlar.Length; i++)
                 {
-                        vurulandusmanlar[i].GetComponent<hareket>().pw.RPC("HasarAl", RpcTarget.AllBuffered, 20);
+                    vurulandusmanlar[i].GetComponent<hareket>().pw.RPC("HasarAl", RpcTarget.AllBuffered, 20);
                 }
                 pw.RPC("Attack", RpcTarget.AllBuffered);
                 animator.SetTrigger("attack");
-                
+
             }
+
             if (Input.GetKeyDown(KeyCode.LeftShift) && enerji >= 50)
             {
                 pw.RPC("Roll", RpcTarget.AllBuffered);
@@ -57,33 +59,35 @@ public class hareket : MonoBehaviour
                 Hareket();
             }
             pw.RPC("SliderUpdate", RpcTarget.AllBufferedViaServer);
-           
-            
+
+
             if (movement.x < 0)
             {
                 //pw.RPC("FlipSprite", RpcTarget.AllBuffered, true);
                 transform.localScale = new Vector3(-0.75f, 0.75f, 1);
-                
+
             }
             if (movement.x > 0)
             {
                 //pw.RPC("FlipSprite", RpcTarget.AllBuffered, false);
                 transform.localScale = new Vector3(0.75f, 0.75f, 1);
             }
-            
+
         }
     }
-           
-       
-    
+
+
+
 
     private void FixedUpdate()
     {
 
 
-       
-        
+
+
     }
+
+
 
     [PunRPC]
     public void SliderUpdate()
@@ -95,14 +99,17 @@ public class hareket : MonoBehaviour
     [PunRPC]
     public void Attack()
     {
-        
+
         enerji = 0;
     }
 
     [PunRPC]
     public void HasarAl(int hasar)
     {
+
         can -= hasar;
+
+
     }
     public void Attackapa()
     {
@@ -121,7 +128,7 @@ public class hareket : MonoBehaviour
         {
             animator.SetBool("hareket", true);
         }
-        
+
     }
     [PunRPC]
     public void Roll()
@@ -131,12 +138,12 @@ public class hareket : MonoBehaviour
             Speed = 10f;
             enerji -= 50;
             rolling = true;
-            rigid.AddForce(transform.forward * 50 , ForceMode2D.Impulse);
+            rigid.AddForce(transform.forward * 50, ForceMode2D.Impulse);
             animator.SetTrigger("roll");
-            
+
         }
-        
-        
+
+
     }
     public void RollKapa()
     {
@@ -150,15 +157,16 @@ public class hareket : MonoBehaviour
     {
         spriteRenderer.flipX = flip;
     }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)      
+        if (stream.IsWriting)
         {
             // Veri gönderme
             stream.SendNext(spriteRenderer.flipX);
             stream.SendNext(can);
             stream.SendNext(enerji);
-            
+
         }
         else
         {
@@ -166,7 +174,8 @@ public class hareket : MonoBehaviour
             spriteRenderer.flipX = (bool)stream.ReceiveNext();
             can = (float)stream.ReceiveNext();
             enerji = (float)stream.ReceiveNext();
+
+
         }
     }
-
 }

@@ -350,6 +350,7 @@ MonoBehaviour:
   enerji: 100
   can: 100
   Speed: 5
+  players: []
 --- !u!114 &8493921072071790357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,8 +368,9 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 2
+  observableSearch: 0
   ObservedComponents:
+  - {fileID: 8254794166797317969}
   - {fileID: 6799315484178477261}
   - {fileID: 6958778286035964699}
   - {fileID: 6893090229445983530}

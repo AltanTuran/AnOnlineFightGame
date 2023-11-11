@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1539281182552652058}
   m_Layer: 3
   m_Name: character
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,6 +282,10 @@ PrefabInstance:
     - target: {fileID: 2374076823685353555, guid: 8216e78ed43702743b6a52a418a30a4e, type: 3}
       propertyPath: m_Name
       value: "ana\xE7ar (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374076823685353555, guid: 8216e78ed43702743b6a52a418a30a4e, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3003167743353331070, guid: 8216e78ed43702743b6a52a418a30a4e, type: 3}
       propertyPath: m_LocalScale.x

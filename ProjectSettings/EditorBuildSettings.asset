@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/arena.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/AnaEkran.unity
+    guid: 331d0f02fbb87d246b9eb42a4f12437f
+  - enabled: 1
+    path: Assets/Scenes/Lobi.unity
+    guid: 046ab0d0ea5360245978a2cadf604de6
   m_configObjects: {}

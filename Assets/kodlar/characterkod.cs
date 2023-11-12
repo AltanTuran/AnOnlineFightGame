@@ -17,7 +17,7 @@ public class characterkod : MonoBehaviour
     {
         if (pw.IsMine)
         {
-             if (transform.GetComponentInChildren<hareket>().can <= 0)
+             if (transform.GetComponentInChildren<enerjican>().can <= 0)
         {
                 Destroy(GameObject.FindGameObjectWithTag("scenetransfer"));
                 PhotonNetwork.LeaveRoom();

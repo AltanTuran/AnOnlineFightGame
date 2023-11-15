@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Photon.Pun;
 using UnityEngine;
 
-public class NickSistemi : MonoBehaviour
+public class NickSistemi : MonoBehaviourPunCallbacks
 {
     public TMP_InputField nick;
     [HideInInspector]public string karakternick;
-
+    public string lobyname;
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -30,7 +31,7 @@ public class NickSistemi : MonoBehaviour
         }
         else
         {
-            karakternick = nick.text;
+            PhotonNetwork.NickName = nick.text; 
         }
     }
 }

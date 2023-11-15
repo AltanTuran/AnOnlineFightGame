@@ -35,14 +35,26 @@ public class MaınMenu : MonoBehaviourPunCallbacks
 
     public void LoadLobi()
     {
-        if(Nicksistem.GetComponent<NickSistemi>().nick.text == null || Nicksistem.GetComponent<NickSistemi>().nick.text == "nigga")
+        if (Nicksistem.GetComponent<NickSistemi>().nick.text == null || Nicksistem.GetComponent<NickSistemi>().nick.text == "nigga")
         {
 
         }
         else
         {
-            SceneManager.LoadScene("Lobi");
+            SceneManager.LoadScene("LobiOlustur");
         }
-        
+
+    }
+
+    public void LoadKatılma()
+    {
+        if (Nicksistem.GetComponent<NickSistemi>().nick.text == null || Nicksistem.GetComponent<NickSistemi>().nick.text == "nigga")
+        {
+
+        }
+        else
+        {
+            SceneManager.LoadScene("OyunaBaglan");
+        }
     }
 }
